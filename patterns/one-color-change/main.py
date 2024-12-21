@@ -11,7 +11,7 @@ def callback(jelka: Jelka):
 
         color = hsv_to_rgb(hue / 360.0, 1.0, 1.0)
         color = tuple(map(lambda x: int(x * 255), color))
-        jelka.set_light(i, Color(color[0], color[1], color[2]))
+        jelka.set_light(i, Color(*color))
 
 
 def main():
