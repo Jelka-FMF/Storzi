@@ -1,5 +1,5 @@
 import { initializeJelka } from 'jelka'
-import { basic, colors, lights, shapes } from 'jelka/interface'
+import { basic, colors, lights } from 'jelka/interface'
 import { Axis, Relation } from 'jelka/types'
 
 function randint(min, max) {
@@ -40,7 +40,7 @@ basic.onFrame(function (frameNumber, timeSinceStart) {
     ),
     colors.rgbColor(random, random2, random3),
   )
-  if (x == 100) {
+  if (x === 100) {
     random = randint(0, 225)
     random2 = randint(0, 225)
     random3 = randint(0, 225)

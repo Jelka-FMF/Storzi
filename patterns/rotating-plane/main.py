@@ -21,14 +21,9 @@ def callback(jelka: Jelka):
 
     if jelka.frame % 150 == 0:
         c1 = Color.random().vivid()
-        c1hsv = rgb_to_hsv(c1.red / 255.0, c1.green / 255.9, c1.green / 255.0)
-        c2hsv = (
-            (c1hsv[0] * 360 + random.randint(100, 200) % 360) / 360.0,
-            c1hsv[1],
-            c1hsv[2],
-        )
-        conv = hsv_to_rgb(*c2hsv)
-        c2 = Color(conv[0] * 255, conv[1] * 255, conv[2] * 255).vivid()
+        c1hsv = rgb_to_hsv(*[component / 255.0 for component in c1])
+        c2hsv = ((c1hsv[0] * 360 + random.randint(100, 200) % 360) / 360.0, c1hsv[1], c1hsv[2])
+        c2 = Color(*[component * 255 for component in hsv_to_rgb(*c2hsv)]).vivid()
 
     for light, position in jelka.positions_normalized.items():
         dcrtica = position.dot(plane.normal)
