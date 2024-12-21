@@ -40,13 +40,13 @@ def stickman(jelka, position, s, h, fin, fir, d):
     dvig = h / 2  # koliko je središče glave oddaljeno od centra v mednožju
     gx, gz = x0, z0 + dvig  # koordinate glave
     rx, rz = x0, z0 + h / 3  # koordinate ramen (izhodišče rok)
-    l = h / 2  # dolžina rok in nog
+    lenght = h / 2  # dolžina rok in nog
     return (
         krogla(position, gx, gz, h / 6)  # glava
-        or palca(position, rx, rz, fir, l, d)  # roka na desni
-        or palca(position, rx, rz, math.pi - fir, l, d)  # roka na levi
-        or palca(position, x0, z0, math.pi - fin, l, d)  # noga na levi
-        or palca(position, x0, z0, fin, l, d)  # noga ne desni
+        or palca(position, rx, rz, fir, lenght, d)  # roka na desni
+        or palca(position, rx, rz, math.pi - fir, lenght, d)  # roka na levi
+        or palca(position, x0, z0, math.pi - fin, lenght, d)  # noga na levi
+        or palca(position, x0, z0, fin, lenght, d)  # noga ne desni
         or palca(position, x0, z0, math.pi / 2, dvig, d)  # telo
     )
 
