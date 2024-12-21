@@ -4,13 +4,13 @@
 #
 #    pip-compile
 #
-certifi==2024.8.30
+certifi==2024.12.14
     # via requests
 charset-normalizer==3.4.0
     # via requests
 idna==3.10
     # via requests
-jelka==0.0.5
+jelka==0.0.6
     # via -r requirements.in
 jelka-validator==1.0.2
     # via jelka
