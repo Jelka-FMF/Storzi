@@ -78,7 +78,7 @@ Once you are in the repository, create a Python virtual environment (venv):
 python -m venv venv
 ```
 
-You can then activate virtual environment:
+You can then activate a virtual environment:
 
 ```bash
 venv\Scripts\activate # On Windows
@@ -190,7 +190,7 @@ If you are writing a pattern in a language that we do not provide a template for
 you will also have to write a custom `Dockerfile` that will be used to compile
 and run the pattern. When started, the `Dockerfile` should run your pattern.
 
-To develop the patterna and run the simulation, you will still have to install
+To develop the pattern and run the simulation, you will still have to install
 Python dependencies as specified in the above section.
 
 Docker containers automatically mount the `/tmp/jelka` pipe. Your pattern should
@@ -211,9 +211,9 @@ Then, for each frame, the pattern should write color data in the following forma
 
 Key guidelines for color representation:
 
-* Each frame is on its own line.
-* Colors should be written using hex digits only (for example `ffffff`, not `#ffffff`).
-* The `#` prefix should be used only at the start of the line.
+* Each frame is represented by a separate line.
+* Colors must be written using HEX digits only (for example, white is `ffffff`, not `#ffffff`).
+* The line must start with `#` and end with a newline character, and must not contain `#` elsewhere.
 * Lines not starting with `#` are treated as comments and are ignored.
 
 Important notes:
@@ -251,20 +251,27 @@ If you are using an official library, this will be handled automatically.
 * Available libraries: [`package.json`](images/javascript/package.json)
 * Pattern filename: `main.js`
 
+# OCaml
+
+* Base image: [`images/ocaml`](images/ocaml)
+* Default template: [`defaults/ocaml`](defaults/ocaml)
+* Available libraries: *None*
+* Pattern filename: `main.ml`
+
 ## Structure
 
 * `patterns/` - Directory containing all patterns
-    * `pattern-name/`
-        * `config.yml` - Configuration file for the pattern
-        * `main.*` - Main file of the pattern
+  * `pattern-name/`
+    * `config.yml` - Configuration file for the pattern
+    * `main.*` - Main file of the pattern
 
 * `defaults/` - Default Docker templates for patterns
-    * `javascript/` - Default Docker template for JavaScript patterns
-    * `python/` - Default Docker template for Python patterns
+  * `javascript/` - Default Docker template for JavaScript patterns
+  * `python/` - Default Docker template for Python patterns
 
 * `images/` - Base Docker images for patterns
-    * `javascript/` - Base Docker image for JavaScript patterns
-    * `python/` - Base Docker image for Python patterns
+  * `javascript/` - Base Docker image for JavaScript patterns
+  * `python/` - Base Docker image for Python patterns
 
 ## License
 

@@ -80,6 +80,7 @@ jobs:
           filetypes=(
             ["main.py"]="python"
             ["main.js"]="javascript"
+            ["main.ml"]="ocaml"
           )
 
           cd "patterns/$pattern"

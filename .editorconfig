@@ -38,3 +38,7 @@ indent_size = 2
 # Data
 [*.{json,yaml,yml,xml,webmanifest}]
 indent_size = 2
+
+# Markdown
+[*.md]
+indent_size = 2
