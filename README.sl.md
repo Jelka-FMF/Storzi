@@ -17,7 +17,7 @@ prikazani na uradni novoletni jelki Fakultete za matematiko in fiziko Univerze v
 
 > [!TIP]
 > Če ne znate uporabljati Gita/GitHuba ali ne morete slediti tem navodilom iz kakršnega
-> koli drugega razloga, si lahko ogledate [Jelkly](https://jelkly.fmf.uni-lj.si/docs). 
+> koli drugega razloga, si lahko ogledate [Jelkly](https://jelkly.fmf.uni-lj.si/docs).
 > Nudi orodje za vizualno programiranje, podobno Scratchu, za ustvarjanje in pošiljanje
 > svojih vzorcev za Jelko FMF, brez potrebe po znanju programiranja.
 
@@ -105,7 +105,7 @@ Spremembe lahko nato objavite:
 git push
 ```
 
-Nato s pomočjo GitHub vmesnika ustvarite pull request (PR). 
+Nato s pomočjo GitHub vmesnika ustvarite pull request (PR).
 
 ### Vzorci v Pythonu
 
@@ -193,21 +193,20 @@ Prva vrstica mora biti glava vzorca, ki specificira podatke o vzorcih:
 
 ```
 #{"version": 0, "led_count": 500, "fps": 60}\n
-``` 
+```
 
 Nato mora vzorec za vsako sličico poslati podatke o barvah v naslednjem formatu:
 
-``` 
+```
 #<barva v hexadecimalni obliki><naslednja barva v hexadecimalni obliki> ... <zadnja barva v hexadecimalni obliki>\n
 ```
 
 Glavne smernice za predstavitev barv:
 
-* Vsaka sličica je na svoji vrstici.
-* Barve naj bodo zapisane le v hexadecimalni obliki (veljavna bela je `ffffff`, ne pa `#ffffff`).
-* Predpona `#` se lahko uporabi samo na začetku vrstice.
+* Vsaka sličica mora biti na svoji vrstici.
+* Barve morajo biti zapisane le v hexadecimalni obliki (npr. veljavna bela je `ffffff`, ne pa `#ffffff`).
+* Vrstica se mora začeti z `#` in končati z znakom za novo vrstico, in drugje ne sme vsebovati `#`.
 * Vrstice, ki se ne začnejo z `#`, so obravnavane kot komentarji in so ignorirane.
-
 
 Pomembne opombe:
 
@@ -230,16 +229,25 @@ bo to obdelano samodejno.
 ## Predloge
 
 ### Python
+
 * Osnovna konfiguracija: [`images/python`](images/python)
 * Privzeta predloga: [`defaults/python`](defaults/python)
 * Razpoložljive knjižnice: [`requirements.in`](images/python/requirements.in)
 * Ime datoteke vzorca: `main.py`
 
 ### JavaScript
+
 * Osnovna konfiguracija: [`images/javascript`](images/javascript)
 * Privzeta predloga: [`defaults/javascript`](defaults/javascript)
 * Razpoložljive knjižnice: [`package.json`](images/javascript/package.json)
 * Ime datoteke vzorca: `main.js`
+
+# OCaml
+
+* Osnovna konfiguracija: [`images/ocaml`](images/ocaml)
+* Privzeta predloga: [`defaults/ocaml`](defaults/ocaml)
+* Razpoložljive knjižnice: *Ni na voljo*
+* Ime datoteke vzorca: `main.ml`
 
 ## Struktura
 
@@ -247,9 +255,11 @@ bo to obdelano samodejno.
   * `ime-vzorca/`
     * `config.yml` - Konfiguracijska datoteka za vzorec
     * `main.*` - Glavna datoteka vzorca
+
 * `defaults/` - Privzete Docker predloge za vzorce
   * `javascript/` - Privzeta Docker predloga za JavaScript vzorce
   * `python/` - Privzeta Docker predloga za Python vzorce
+
 * `images/` - Osnovne Docker podobe za vzorce
   * `javascript/` - Osnovna Docker podoba za JavaScript vzorce
   * `python/` - Osnovna Docker podoba za Python vzorce
