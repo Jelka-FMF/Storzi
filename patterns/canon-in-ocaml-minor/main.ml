@@ -1,3 +1,5 @@
+#load "unix.cma";;
+
 let stevilo_luck : int = 500
 let skok_stopnje = 9 (*Mora biti liho število*)
 let skok_pozicije = 1 (*Mora biti deljivo z skok_stopnje*)
@@ -69,9 +71,10 @@ let rec po_framih frame =
   spremeni_polozaje;
   spremeni_stopnje;
 
+  Unix.sleepf (1. /. 50.);
+
   match frame with
   | _ -> po_framih (frame + 1);
-
 
 ;;
 
