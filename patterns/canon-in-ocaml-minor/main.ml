@@ -1,8 +1,13 @@
 #load "unix.cma";;
 
-let stevilo_luck : int = 500
+let stevilo_luck =
+  In_channel.with_open_text (Sys.getenv "JELKA_POSITIONS") (fun ic ->
+    In_channel.input_lines ic |> List.length)
+
 let skok_stopnje = 9 (*Mora biti liho število*)
 let skok_pozicije = 1 (*Mora biti deljivo z skok_stopnje*)
+
+let fps = 50
 
 let barve = [|
 "f4ebfe"; "efe3fd"; "ebdbfd"; "e7d3fd"; "e3ccfc"; "dec4fc";
@@ -15,45 +20,45 @@ let barve = [|
 "45058d"; "410585"; "3d057d"; "3a0475"; "36046d"; "320466";
 "2e035e"; "2a0356"; "26034e"; "220246"; "1e023e"; "1b0236"
 |]
-let n = Array.length barve 
+let n = Array.length barve
 let stopnje = Array.init n (fun i -> (i + 1) * skok_stopnje)
 let polozaji = Array.make n 1
 
-let rec po_framih frame = 
+let rec po_framih frame =
   let lucke = Array.make stevilo_luck "000000" in
 
-  let spremeni_polozaje = 
-    let rec po_polozajih s = 
+  let spremeni_polozaje =
+    let rec po_polozajih s =
       if s < n && stopnje.(s) <> 0 then
         match stopnje.(s) with
-        | x when x mod 2 = 0 -> 
-          polozaji.(s) <- (polozaji.(s) + skok_pozicije) ; 
+        | x when x mod 2 = 0 ->
+          polozaji.(s) <- (polozaji.(s) + skok_pozicije) ;
           po_polozajih (s + 1)
-        | _ -> 
-          polozaji.(s) <- (polozaji.(s) - skok_pozicije) ; 
+        | _ ->
+          polozaji.(s) <- (polozaji.(s) - skok_pozicije) ;
           po_polozajih (s + 1)
     in
     po_polozajih 0
   in
 
-  let spremeni_stopnje = 
+  let spremeni_stopnje =
     let rec po_barvah s =
       if s < n then
         match polozaji.(s) mod stopnje.(s) with
-        | 0 -> 
-          stopnje.(s) <- (stopnje.(s) + skok_stopnje - 1) mod stevilo_luck + 1 ; 
+        | 0 ->
+          stopnje.(s) <- (stopnje.(s) + skok_stopnje - 1) mod stevilo_luck + 1 ;
           po_barvah (s + 1)
         | _ -> po_barvah (s + 1)
       in
     po_barvah 0
   in
 
-  let rec po_luckah i = 
+  let rec po_luckah i =
     if i < stevilo_luck then
       let rec po_barvah s =
         if s < n then
           match i with
-          | _ when polozaji.(s) = i -> 
+          | _ when polozaji.(s) = i ->
             lucke.(i) <- barve.(s) ;
             po_barvah (s + 1)
           | _ -> po_barvah (s + 1)
@@ -71,12 +76,13 @@ let rec po_framih frame =
   spremeni_polozaje;
   spremeni_stopnje;
 
-  Unix.sleepf (1. /. 50.);
+  Unix.sleepf (1. /. (float_of_int fps));
 
   match frame with
   | _ -> po_framih (frame + 1);
 
 ;;
 
-print_string "#{\"version\":0, \"led_count\":500, \"fps\":5}\n";;
+Printf.printf "#{\"version\": 0, \"led_count\": %d, \"fps\": %d}\n" stevilo_luck fps;;
+
 po_framih 0;;
