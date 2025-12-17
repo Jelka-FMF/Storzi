@@ -1,4 +1,4 @@
-print('#{"version": 0, "led_count": 500, "fps": 60}')
+import os
 
 
 def hsv_to_hex(h, s, v):
@@ -45,11 +45,16 @@ def hsv_to_hex(h, s, v):
     return "{:02x}{:02x}{:02x}".format(int(r * 255), int(g * 255), int(b * 255))
 
 
+with open(os.environ["JELKA_POSITIONS"]) as file:
+    n = len(file.readlines())
+
+print(f'#{{"version": 0, "led_count": {n}, "fps": 60}}')
+
 h = 0
 while True:
     h += 1
     h %= 360
     st = "#"
-    for i in range(500):
+    for i in range(n):
         st += hsv_to_hex((h + i) % 360, 100, 100)
     print(st, flush=True)

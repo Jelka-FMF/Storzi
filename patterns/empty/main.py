@@ -1,7 +1,11 @@
+import os
 import time
 
-print('#{"version": 0, "led_count": 1000, "fps": 1}')
+with open(os.environ["JELKA_POSITIONS"]) as file:
+    n = len(file.readlines())
+
+print(f'#{{"version": 0, "led_count": {n}, "fps": 1}}')
 
 while True:
-    print("#" + "000000" * 1000)
+    print("#" + "000000" * n)
     time.sleep(1)

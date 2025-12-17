@@ -1,8 +1,6 @@
+import os
 import random
 import numpy as np
-import pathlib
-
-print('#{"version": 0, "led_count": 500, "fps": 60}')
 
 
 def hsv_to_hex(h, s, v):
@@ -50,13 +48,12 @@ def hsv_to_hex(h, s, v):
 
 
 lucke = []
-locations = pathlib.Path("/app/positions.csv")  # Used in Docker when running on tree.
-# locations = pathlib.Path(__file__).resolve().parents[2] / "data" / "positions.csv"  # Used locally when testing.
-with open(locations) as f:
+with open(os.environ["JELKA_POSITIONS"]) as f:
     for line in f.readlines():
         split_line = line.strip().split(",")
         lucke.append([int(split_line[0]), float(split_line[1]), float(split_line[2]), float(split_line[3])])
 lucke.sort(key=lambda x: x[0])  # Make sure the LED indices are in order
+stevilo_luck = len(lucke)
 
 
 def make_gradient(vector, h_start):
@@ -65,8 +62,8 @@ def make_gradient(vector, h_start):
     def dot_prod(v1, v2):
         return sum([v1[i] * v2[i] for i in range(3)])
 
-    products = np.empty(500)
-    for i in range(500):
+    products = np.empty(stevilo_luck)
+    for i in range(stevilo_luck):
         products[i] = dot_prod(vector, lucke[i][1:])
     products = products + np.min(products)
     products = products / np.max(products)
@@ -82,6 +79,9 @@ def random_vector(norm):
     v = np.array([random.random(), random.random(), random.random()])
     v = v / np.linalg.norm(v)
     return v * norm
+
+
+print(f'#{{"version": 0, "led_count": {stevilo_luck}, "fps": 60}}')
 
 
 h_start = random.randint(0, 360)

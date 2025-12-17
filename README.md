@@ -200,7 +200,7 @@ redirect it to the `/tmp/jelka` pipe.
 The first line should be a header that specifies the pattern properties:
 
 ```
-#{"version": 0, "led_count": 500, "fps": 60}\n
+#{"version": 0, "led_count": 1000, "fps": 60}\n
 ```
 
 Then, for each frame, the pattern should write color data in the following format:
@@ -221,13 +221,14 @@ Important notes:
 * Hardware-limited framerate is 66 frames per second, so do not expect more than 60 frames per second.
 * Many languages will not flush output automatically, so you may need to implement manual flushing.
 
-Docker containers mount a CSV file with positions to `/tmp/positions.csv`.
-Outside the container, an example CSV file with positions is provided
-in the [`data/positions.csv`](data/positions.csv) in this repository.
-Each line contains a light ID, and the XYZ position of a light.
-If you are not using an official library, you will need to manually
-load the correct file and parse it positions if you need them.
+The runner and the simulation set the `JELKA_POSITIONS` environment variable to
+a path to a CSV file with light positions. Each line contains a light ID, and
+the XYZ position of a light. If you are not using an official library, you will
+need to manually load the correct file and parse its positions if you need them.
 If you are using an official library, this will be handled automatically.
+
+An example CSV file with positions is provided in the [`data/positions.csv`](data/positions.csv)
+in this repository.
 
 ### Guidelines
 

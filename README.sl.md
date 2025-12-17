@@ -192,7 +192,7 @@ v cev bodisi z preusmeritvijo standardnega izhoda v cev.
 Prva vrstica mora biti glava vzorca, ki specificira podatke o vzorcih:
 
 ```
-#{"version": 0, "led_count": 500, "fps": 60}\n
+#{"version": 0, "led_count": 1000, "fps": 60}\n
 ```
 
 Nato mora vzorec za vsako sličico poslati podatke o barvah v naslednjem formatu:
@@ -213,12 +213,14 @@ Pomembne opombe:
 * Hitrost prikaza je strojno omejena na 66 sličic na sekundo, zato ne pričakujte več kot 60 sličic na sekundo.
 * Številni jeziki ne omogočajo avtomatskega praznjenja izhodnega toka, zato boste morda morali implementirati ročno praznjenje
 
-Docker vsebniki priklopijo CSV datoteko s pozicijami na `/tmp/positions.csv`.
-Zunaj vsebnika je primer CSV datoteke s pozicijami na voljo v [`data/positions.csv`](data/positions.csv)
-v tem repozitoriju. Vsaka vrstica vsebuje ID luči in XYZ pozicijo luči. Če ne
-uporabljate uradne knjižnice, boste morali ročno naložiti pravilno datoteko
-in razčleniti pozicije, če jih potrebujete. Če uporabljate uradno knjižnico,
-bo to obdelano samodejno.
+Zaganjalnik in simulacija nastavita okoljsko spremenljivko `JELKA_POSITIONS`
+na pot do CSV datoteke s pozicijami lučk. Vsaka vrstica vsebuje ID luči in
+XYZ pozicijo luči. Če ne uporabljate uradne knjižnice, boste morali ročno
+naložiti pravilno datoteko in razčleniti pozicije, če jih potrebujete.
+Če uporabljate uradno knjižnico, bo to obdelano samodejno.
+
+Primer CSV datoteke s pozicijami je na voljo v [`data/positions.csv`](data/positions.csv)
+v tem repozitoriju.
 
 ### Smernice
 
