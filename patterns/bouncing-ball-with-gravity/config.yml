@@ -1,6 +1,5 @@
 name: Bouncing Ball with Gravity
-description: Krogla, z nastavljivim radijem, ki se obija znotraj stožca aka. jelke. Tokrat z GRAVITACIJO (integracija rabi nekaj sekund da se predkalkulira trajektorija)
+description: Krogla z nastavljivim radijem, ki se odbija znotraj stožca (jelke), tokrat z gravitacijo
 
 author: Rok
-
-school: Fakulteta za Fiziko in karkol majo čez cesto
+school: Fakulteta za fiziko in karkoli imajo čez cesto
