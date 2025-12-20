@@ -1,7 +1,7 @@
 {
   "type": "module",
-  "packageManager": "npm@10.8.1",
+  "packageManager": "npm@11.7.0",
   "dependencies": {
-    "jelka": "^0.2.1"
+    "jelka": "^0.2.2"
   }
 }

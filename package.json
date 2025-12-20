@@ -1,11 +1,11 @@
 {
   "type": "module",
-  "packageManager": "npm@10.8.1",
+  "packageManager": "npm@11.7.0",
   "dependencies": {
-    "jelka": "^0.2.1"
+    "jelka": "^0.2.2"
   },
   "devDependencies": {
-    "prettier": "^3.4.1"
+    "prettier": "^3.7.4"
   },
   "scripts": {
     "format": "prettier --write",
