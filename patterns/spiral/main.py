@@ -14,12 +14,12 @@ def init(jelka: Jelka):
 
     normalized = [Position(0, 0, 0)] * jelka.number_of_lights
 
-    min_x = min([pos.x for pos in jelka.positions_raw.values()])
-    max_x = max([pos.x for pos in jelka.positions_raw.values()])
-    min_y = min([pos.y for pos in jelka.positions_raw.values()])
-    max_y = max([pos.y for pos in jelka.positions_raw.values()])
-    min_z = min([pos.z for pos in jelka.positions_raw.values()])
-    max_z = max([pos.z for pos in jelka.positions_raw.values()])
+    min_x = jelka.bounds_raw.min_x
+    max_x = jelka.bounds_raw.max_x
+    min_y = jelka.bounds_raw.min_y
+    max_y = jelka.bounds_raw.max_y
+    min_z = jelka.bounds_raw.min_z
+    max_z = jelka.bounds_raw.max_z
 
     for light, position in jelka.positions_raw.items():
         normalized[light] = Position(

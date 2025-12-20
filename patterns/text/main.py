@@ -1,7 +1,6 @@
+import numpy as np
 from jelka import Jelka
 from jelka.types import Color
-import numpy as np
-
 
 M = np.array(
     [
@@ -42,11 +41,22 @@ s = [
     (blank, 10, np.array([[0, 0, 0]])),
 ]
 
+pos: np.ndarray
+
+
+def init(jelka: Jelka):
+    global pos
+
+    pos = np.array([(p.x, p.y, p.z) for p in jelka.positions_raw.values()])
+    dists = np.linalg.norm(pos, axis=1)
+    radius = float(dists.max()) if dists.size else 0.0
+
+    if radius > 0.0:
+        pos = pos / radius * 200.0
+
 
 def callback(jelka: Jelka):
     t = jelka.frame
-
-    pos = np.array([(p.x, p.y, p.z) for p in jelka.positions_raw.values()])
 
     total_duration = sum([d for _, d, _ in s])
     T = t % total_duration
@@ -88,7 +98,7 @@ def callback(jelka: Jelka):
 
 def main():
     jelka = Jelka(25)
-    jelka.run(callback)
+    jelka.run(callback, init)
 
 
 main()
