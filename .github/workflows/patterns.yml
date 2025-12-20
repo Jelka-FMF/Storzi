@@ -69,7 +69,7 @@ jobs:
         if: github.ref == 'refs/heads/main'
         uses: docker/login-action@v3
         with:
-          username: ${{ secrets.DOCKER_USERNAME }}
+          username: ${{ vars.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           registry: ${{ vars.DOCKER_REGISTRY }}
 
@@ -141,6 +141,7 @@ jobs:
 
       - name: Build and push the pattern
         uses: docker/build-push-action@v6
+        id: build
         with:
           context: patterns/${{ matrix.pattern }}
           push: ${{ github.ref == 'refs/heads/main' }}
@@ -170,7 +171,7 @@ jobs:
             --arg school "$school" \
             --argjson duration "$duration" \
             --arg source "https://github.com/${{ github.repository }}/tree/${{ github.sha }}/patterns/$pattern" \
-            --arg docker "${{ vars.DOCKER_REGISTRY }}/$pattern" \
+            --arg docker "${{ vars.DOCKER_REGISTRY }}/$pattern@${{ steps.build.outputs.digest }}" \
             '{identifier: $identifier, name: $name, description: $description, author: $author, school: $school, duration: $duration, source: $source, docker: $docker}')
 
           # Submit the payload
