@@ -4,7 +4,7 @@ type position = { id: int; x: float; y: float; z: float }
 type mode = SIX | SEVEN
 
 let line_to_pos line =
-  match line with
+  match List.map String.trim line with
   | id :: x :: y :: z :: [] -> {id = int_of_string id; x = float_of_string x; y = float_of_string y; z = float_of_string z}
   | _ -> failwith "Unexpected position format"
 
