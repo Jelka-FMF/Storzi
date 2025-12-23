@@ -25,8 +25,8 @@ def callback(jelka: Jelka):
             (position[0] * 255 + math.tan((jelka.elapsed_time % 4) / 4) * 255 + 256) % 256,
             (position[0] * 255 + math.tan((jelka.elapsed_time % 4) / 4) * 255 + 256) % 256,
         )
-        l = math.atan2(y - cy, x - cx)
-        k = (ta - l) % (2 * math.pi)
+        tl = math.atan2(y - cy, x - cx)
+        k = (ta - tl) % (2 * math.pi)
         if position.z > tz:
             r, g, b = stara
             vse_nove = False
