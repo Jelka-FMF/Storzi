@@ -2,7 +2,7 @@
   "type": "module",
   "packageManager": "npm@11.7.0",
   "dependencies": {
-    "jelka": "^0.2.2"
+    "jelka": "^0.3.0"
   },
   "devDependencies": {
     "prettier": "^3.7.4"
